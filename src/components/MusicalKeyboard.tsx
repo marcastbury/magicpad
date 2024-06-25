@@ -106,11 +106,11 @@ const MusicalKeyboard: React.FC = () => {
   return (
     <div className="flex flex-col h-screen p-4 pt-16 items-center bg-stone-100 overflow-scroll">
       <div className="flex mb-16">
-        <img src="/logo.png" alt="Music Pad" width={200} height={50} />
+        <img src="/magic.svg" alt="Music Pad" width={200} height={50} />
       </div>
 
       <div className="mb-12 flex space-x-8">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-28">
           <label className="block text-sm font-medium text-stone-700 mb-2">
             Octave Shift
           </label>
@@ -131,7 +131,7 @@ const MusicalKeyboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center min-w-28">
           <label className="block text-sm font-medium text-stone-700 mb-2">
             Instrument
           </label>
@@ -151,7 +151,7 @@ const MusicalKeyboard: React.FC = () => {
           </Select>
         </div>
 
-        <div className="flex flex-col items-center w-32">
+        <div className="flex flex-col items-center w-32 ">
           <label className="block text-sm font-medium text-stone-700 mb-6">
             Volume
           </label>
@@ -181,7 +181,7 @@ const MusicalKeyboard: React.FC = () => {
                          : "w-14 h-48"
                      }
                      ${pressedKeys[note.name] ? "transform translate-y-1" : ""}
-                     border border-stone-300 flex flex-col items-center justify-center pb-2 rounded-b-sm cursor-pointer
+                     border-l border-r border-b border-stone-300 flex flex-col items-center justify-center pb-2 rounded-b-sm cursor-pointer
                      transition-all duration-100 ease-in-out
                    `}
             onClick={() => playNote(note.frequency, note.name)}
