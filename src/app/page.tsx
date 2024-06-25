@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
+import Image from "next/image";
 
 interface Note {
   name: string;
@@ -20,14 +21,18 @@ interface Note {
 type Instrument = "sine" | "square" | "sawtooth" | "triangle";
 
 const MusicalKeyboard: React.FC = () => {
-  const [audioContext] = useState<AudioContext>(
-    new (window.AudioContext || (window as any).webkitAudioContext)()
-  );
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [lastPlayedNote, setLastPlayedNote] = useState<string | null>(null);
   const [octaveShift, setOctaveShift] = useState<number>(0);
   const [instrument, setInstrument] = useState<Instrument>("sine");
   const [volume, setVolume] = useState<number>(0.5);
   const [pressedKeys, setPressedKeys] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    setAudioContext(
+      new (window.AudioContext || (window as any).webkitAudioContext)()
+    );
+  }, []);
 
   const baseNotes: Note[] = [
     { name: "C", frequency: 261.63, key: "a" },
@@ -52,6 +57,8 @@ const MusicalKeyboard: React.FC = () => {
 
   const playNote = useCallback(
     (frequency: number, noteName: string) => {
+      if (!audioContext) return;
+
       const oscillator = audioContext.createOscillator();
       oscillator.type = instrument;
       oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
