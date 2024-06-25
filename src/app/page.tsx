@@ -14,7 +14,7 @@ const LoadingPlaceholder = () => (
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-stone-50">
       <MusicalKeyboardClient />
     </main>
   );
