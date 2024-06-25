@@ -106,7 +106,7 @@ const MusicalKeyboard: React.FC = () => {
   return (
     <div className="flex flex-col h-screen p-4 pt-16 items-center bg-stone-100 overflow-scroll">
       <div className="flex mb-16">
-        <img src="/logo.png" alt="Music Pad" />
+        <img src="/logo.png" alt="Music Pad" width={200} height={50} />
       </div>
 
       <div className="mb-12 flex space-x-8">
